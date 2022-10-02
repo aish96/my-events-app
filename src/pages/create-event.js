@@ -9,6 +9,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 function CreateEvent() {
   const [eventName, setEventName] = useState("");
   const [hostName, setHostName] = useState("");
+  const [location, setLocationName] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [eventPhoto, setPhoto] = useState("");
@@ -27,7 +28,8 @@ function CreateEvent() {
         eventName:eventName,
         hostName:hostName,
         fromDate:fromDate,
-        toDate:toDate
+        toDate:toDate,
+        location:location
       },
     });
   }
@@ -60,6 +62,16 @@ function CreateEvent() {
           >
             <Form.Control type="text" name="hostName" value={hostName}
               onChange={(e) => setHostName(e.target.value)}/>
+          </FloatingLabel>
+        </Form.Group>
+        <Form.Group controlId="location">
+          <FloatingLabel
+            controlId="locationFloatingInput"
+            label="location"
+            className="mb-3"
+          >
+            <Form.Control type="text" name="location" value={location}
+              onChange={(e) => setLocationName(e.target.value)}/>
           </FloatingLabel>
         </Form.Group>
         <Form.Group controlId="startDate">
@@ -95,10 +107,10 @@ function CreateEvent() {
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Upload Event Photo</Form.Label>
-          <Form.Control type="file" />
+          <Form.Control type="file" accept="image/*"
+              onChange={(e) => setPhoto( URL.createObjectURL(e.target.files[0]))}/>
         </Form.Group>
-        <Button type="submit" className="next" value={eventPhoto}
-              onChange={(e) => setPhoto(e.target.value)}>
+        <Button type="submit" className="next" >
           Next
         </Button>
       </Form>
