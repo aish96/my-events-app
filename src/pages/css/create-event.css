@@ -1,0 +1,41 @@
+.create-event form{
+    margin: auto;
+    margin-top: 60px;
+    max-width: 321px;
+    text-align:center;
+}
+
+h1 {
+    font-family: "Helvetica";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px /*4rem*/;
+    line-height: 36px /*4rem*/;
+    text-align: center;
+    margin: 0;
+    color: #240d57;
+  }
+  
+  h1.brand-name {
+    background: linear-gradient(90deg, #8456ec 24.2%, #e87bf8 120.46%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .create-event .next{
+    margin: auto;
+    margin-top: 34px;
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 10px;
+  height: 50px;
+  width: 187px;
+  background: linear-gradient(90deg, #8456EC 3.25%, #E87BF8 100%);
+  border-radius: 10px;
+  border: none;
+  }
