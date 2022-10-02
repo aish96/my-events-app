@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import { useLocation } from "react-router-dom";
 
-class ViewEvent extends Component {
-  render() {
-    return <div>View Event</div>;
-  }
+function ViewEvent()  {
+    let {state} = useLocation();
+
+    console.log(state)
+    return <div>View Event{state.toDate}</div>;
 }
 
 export default ViewEvent;

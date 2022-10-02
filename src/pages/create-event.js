@@ -3,13 +3,16 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 function CreateEvent() {
+  const [eventName, setEventName] = useState("");
+  const [hostName, setHostName] = useState("");
   const [fromDate, setFromDate] = useState("");
-
   const [toDate, setToDate] = useState("");
+  const [eventPhoto, setPhoto] = useState("");
+
   let navigate = useNavigate();
 
   const assignFromDate = (e) => {
@@ -18,22 +21,35 @@ function CreateEvent() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    navigate("/event");
+    navigate("/event", {
+      state: {
+        eventPhoto:eventPhoto,
+        eventName:eventName,
+        hostName:hostName,
+        fromDate:fromDate,
+        toDate:toDate
+      },
+    });
   }
 
   return (
     <Container className="create-event">
       <Form onSubmit={handleOnSubmit}>
-      <div className="header">
-        <h1 className="brand-name">Create Event</h1>
-      </div>
+        <div className="header">
+          <h1 className="brand-name">Create Event</h1>
+        </div>
         <Form.Group controlId="eventName">
           <FloatingLabel
             controlId="eventNameFloatingInput"
             label="Event Name"
             className="mb-3"
           >
-            <Form.Control type="text" name="eventName" />
+            <Form.Control
+              type="text"
+              name="eventName"
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+            />
           </FloatingLabel>
         </Form.Group>
         <Form.Group controlId="hostName">
@@ -42,7 +58,8 @@ function CreateEvent() {
             label="Host Name"
             className="mb-3"
           >
-            <Form.Control type="text" name="hostName" />
+            <Form.Control type="text" name="hostName" value={hostName}
+              onChange={(e) => setHostName(e.target.value)}/>
           </FloatingLabel>
         </Form.Group>
         <Form.Group controlId="startDate">
@@ -54,9 +71,10 @@ function CreateEvent() {
             <Form.Control
               type="date"
               name="startDate"
+              value={fromDate}
               placeholder="Start Date"
               onChange={assignFromDate}
-            />{" "}
+            />
           </FloatingLabel>
         </Form.Group>
         <Form.Group controlId="endDate">
@@ -69,6 +87,7 @@ function CreateEvent() {
               type="date"
               name="endDate"
               min={fromDate}
+              value={toDate}
               placeholder="End Date"
               onChange={(e) => setToDate(e.target.value)}
             />
@@ -78,7 +97,8 @@ function CreateEvent() {
           <Form.Label>Upload Event Photo</Form.Label>
           <Form.Control type="file" />
         </Form.Group>
-        <Button type="submit" className="next">
+        <Button type="submit" className="next" value={eventPhoto}
+              onChange={(e) => setPhoto(e.target.value)}>
           Next
         </Button>
       </Form>
